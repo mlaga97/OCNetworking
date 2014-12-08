@@ -3,7 +3,7 @@ local event = require("event")
 local checkType = require("mlaga97.util.checkType")
 local modError = require("mlaga97.util.modError")
 
-local function filter( port, address, requested_port, requested_address )
+local function filter(port, address, requested_port, requested_address)
   if port == requested_port and address == requested_address then
     return true
   end
@@ -11,15 +11,15 @@ end
 
 return function(requested_port, requested_address)
   -- Error check types
-  checkType( requested_port or -1, "number", "Requested port" )
-  checkType( requested_address or "", "string", "Requested address" )
+  checkType(requested_port or -1, "number", "Requested port")
+  checkType(requested_address or "", "string", "Requested address")
   
   while true do
     -- Wait for modem_message event
     local message = {event.pull("modem_message")}
     
     -- Is the packet one we are looking for?
-    if filter( message[4], message[3], requested_port, requested_address ) then
+    if filter(message[4], message[3], requested_port, requested_address) then
       -- Excellent, lets return the message.
       
       -- Do to a weird 'feature' of the language, it is entirely necessary to
