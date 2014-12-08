@@ -36,4 +36,5 @@ return function(requested_socket, requested_port, requested_address)
     end
     
     -- Nope? Alright, let's try again.
+  end
 end

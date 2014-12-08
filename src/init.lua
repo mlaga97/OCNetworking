@@ -1,8 +1,7 @@
 --local session = require("mlaga97.net.session")
 local message = require("mlaga97.net.message")
 
-message.send("server", 1337, "mlaga97.net.packet.test", "")
-message.send("server", 1337, "mlaga97.net.packet.test", "Hello, World")
+print( message.receive( "mlaga97.net.packet.test", 1337, "client" ) )
 
 --[[
 
