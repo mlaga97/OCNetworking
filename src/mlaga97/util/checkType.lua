@@ -8,7 +8,7 @@ return function( variable, preferred_type, name )
     error( "Name must be of type: string" )
   end
   
-  if type( variable ) ~= type then
+  if type( variable ) ~= preferred_type then
     error( name .. " must be of type: " .. preferred_type )
   end
 end
