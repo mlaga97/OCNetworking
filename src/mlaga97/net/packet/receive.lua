@@ -16,10 +16,10 @@ return function(requested_port, requested_address)
   
   while true do
     -- Wait for modem_message event
-    local message = {event.pull("modem_message")}
+    local packet = {event.pull("modem_message")}
     
     -- Is the packet one we are looking for?
-    if filter(message[4], message[3], requested_port, requested_address) then
+    if filter(packet[4], packet[3], requested_port, requested_address) then
       -- Excellent, lets return the message.
       
       -- Do to a weird 'feature' of the language, it is entirely necessary to
@@ -28,8 +28,8 @@ return function(requested_port, requested_address)
       local toReturn = {}
       
       -- Find the variables we are looking for and put them in a table.
-      for pos = 6,#message do
-        table.insert(toReturn,message[pos])
+      for pos = 6,#packet do
+        table.insert(toReturn,packet[pos])
       end
       
       -- Return all of the variables!!!
